@@ -1,10 +1,19 @@
 {
-  "originHash" : "15c55e3812b2995086d85ebf1dcb0e3b989ba68f513fbe2f485ebc5225f81136",
+  "originHash" : "fa1545a81b7ea30aac982d9507ad706319271611bb27c94c4e4c508421deea1d",
   "pins" : [
+    {
+      "identity" : "stylable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dvclmn/Stylable.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "82389fd68e93ea767912ba7dc64516d1da27e1be"
+      }
+    },
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-syntax",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
       "state" : {
         "revision" : "0687f71944021d616d34d922343dcef086855920",
         "version" : "600.0.1"
