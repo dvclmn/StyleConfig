@@ -12,7 +12,7 @@ import SwiftSyntaxMacros
 
 
 @main
-struct StylerPlugin: CompilerPlugin {
+public struct StylerPlugin: CompilerPlugin {
   let providingMacros: [Macro.Type] = [
     StylerMacro.self
   ]

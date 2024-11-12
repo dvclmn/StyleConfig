@@ -3,6 +3,16 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
+/// Was previously trying to create an extension on `Stylable`,
+/// with the macro attached to a `ExampleConfiguration`,
+/// which is an *unrelated* type, and doesn't work.
+///
+/// Now going to try defining the extension on the *View*, or type
+/// that actually conforms to `Stylable`. This may mean I can
+/// also conform the View (or LabelStyle etc) to `Stylable`,
+/// as a further convenience.
+///
+
 public struct StylerMacro: ExtensionMacro {
   public static func expansion(
     of node: AttributeSyntax,
@@ -14,6 +24,25 @@ public struct StylerMacro: ExtensionMacro {
     guard let structDecl = declaration.as(StructDeclSyntax.self) else {
       throw CustomError.notAStruct
     }
+    
+    
+//    let decl: DeclSyntax =
+//      """
+//      extension \(type.trimmed) {
+//        func doDefaultThing() {
+//          // implementation here
+//        }
+//      }
+//      """
+//    
+//    guard let extensionDecl = decl.as(ExtensionDeclSyntax.self) else {
+//      return []
+//    }
+//    
+//    return [extensionDecl]
+    
+    
+    
     
     let structName = structDecl.name.text
     
@@ -28,20 +57,23 @@ public struct StylerMacro: ExtensionMacro {
       return (identifier.identifier.text, type.description)
     }
     
+    
+    
+    
     // Create function declarations
-    let functionDecls: [DeclSyntax] = properties.map { property in
-            """
-            func \(raw: property.name)(_ \(raw: property.name): \(raw: property.type)) -> Self {
-                modified { $0.\(raw: property.name) = \(raw: property.name) }
-            }
-            """
-    }
+//    let functionDecls: [DeclSyntax] = properties.map { property in
+//            """
+//            func \(raw: property.name)(_ \(raw: property.name): \(raw: property.type)) -> Self {
+//                modified { $0.\(raw: property.name) = \(raw: property.name) }
+//            }
+//            """
+//    }
     
     // Create the extension
     let extensionDecl = try ExtensionDeclSyntax(
             """
-            extension Stylable where StyleConfiguration == \(raw: structName) {
-                \(raw: functionDecls.map { "\($0)" }.joined(separator: "\n\n"))
+            extension \(type.trimmed) {
+               var exampleString: String { "Yay" }
             }
             """
     )

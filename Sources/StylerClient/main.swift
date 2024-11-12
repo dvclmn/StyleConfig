@@ -9,15 +9,16 @@
 //
 
 import Styler
+import Stylable
 import SwiftUI
 
 
-@Styler
+
 struct TestConfiguration {
   var myColour: Color = .red
 }
 
-
+@Styler
 struct ExampleView: View, Stylable {
   
   typealias StyleConfiguration = TestConfiguration
@@ -33,24 +34,24 @@ struct ExampleView: View, Stylable {
 }
 
 
-struct ParentView: View {
-  
-  var body: some View {
-    
-    ExampleView()
-      .with(.init(myColour: .green))
-      .padding(40)
-      .frame(width: 600, height: 700)
-      .background(.black.opacity(0.6))
-    
-  }
-}
-
-#if DEBUG
-#Preview {
-  ParentView()
-}
-#endif
+//struct ParentView: View {
+//  
+//  var body: some View {
+//    
+//    ExampleView()
+//      .with(.init(myColour: .green))
+//      .padding(40)
+//      .frame(width: 600, height: 700)
+//      .background(.black.opacity(0.6))
+//    
+//  }
+//}
+//
+//#if DEBUG
+//#Preview {
+//  ParentView()
+//}
+//#endif
 
 
 
