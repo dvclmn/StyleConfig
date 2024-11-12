@@ -5,17 +5,17 @@ import SwiftSyntaxMacrosTestSupport
 import XCTest
 
 // Macro implementations build for the host, so the corresponding module is not available when cross-compiling. Cross-compiled tests may still make use of the macro itself in end-to-end tests.
-#if canImport(StylableMacros)
-import StylableMacros
+#if canImport(StylerMacros)
+import StylerMacros
 
 let testMacros: [String: Macro.Type] = [
-    "stringify": StringifyMacro.self,
+  "styler": StylerMacro.self,
 ]
 #endif
 
-final class StylableTests: XCTestCase {
+final class StylerTests: XCTestCase {
     func testMacro() throws {
-        #if canImport(StylableMacros)
+        #if canImport(StylerMacros)
         assertMacroExpansion(
             """
             #stringify(a + b)
@@ -31,7 +31,7 @@ final class StylableTests: XCTestCase {
     }
 
     func testMacroWithStringLiteral() throws {
-        #if canImport(StylableMacros)
+        #if canImport(StylerMacros)
         assertMacroExpansion(
             #"""
             #stringify("Hello, \(name)")

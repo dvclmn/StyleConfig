@@ -1,2 +1,2 @@
-# Stylable
+# Styler
  

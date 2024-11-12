@@ -5,17 +5,17 @@ import PackageDescription
 import CompilerPluginSupport
 
 let package = Package(
-    name: "Stylable",
-    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .macCatalyst(.v13)],
+    name: "Styler",
+    platforms: [.macOS(.v14), .iOS(.v13)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "Stylable",
-            targets: ["Stylable"]
+            name: "Styler",
+            targets: ["Styler"]
         ),
         .executable(
-            name: "StylableClient",
-            targets: ["StylableClient"]
+            name: "StylerClient",
+            targets: ["StylerClient"]
         ),
     ],
     dependencies: [
@@ -26,7 +26,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         // Macro implementation that performs the source transformation of a macro.
         .macro(
-            name: "StylableMacros",
+            name: "StylerMacros",
             dependencies: [
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
@@ -34,16 +34,18 @@ let package = Package(
         ),
 
         // Library that exposes a macro as part of its API, which is used in client programs.
-        .target(name: "Stylable", dependencies: ["StylableMacros"]),
+        .target(name: "Styler", dependencies: [
+          "StylerMacros",
+        ]),
 
         // A client of the library, which is able to use the macro in its own code.
-        .executableTarget(name: "StylableClient", dependencies: ["Stylable"]),
+        .executableTarget(name: "StylerClient", dependencies: ["Styler"]),
 
         // A test target used to develop the macro implementation.
         .testTarget(
-            name: "StylableTests",
+            name: "StylerTests",
             dependencies: [
-                "StylableMacros",
+                "StylerMacros",
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
         ),
