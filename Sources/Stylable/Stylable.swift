@@ -10,6 +10,11 @@
 //@freestanding(expression)
 //public macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "BaseMacros", type: "StringifyMacro")
 
-@attached(member)
+//@attached(member)
+//public macro Stylable() = #externalMacro(module: "StylableMacros", type: "StylableMacro")
+
+@attached(peer)
 public macro Stylable() = #externalMacro(module: "StylableMacros", type: "StylableMacro")
 
+@attached(member)
+public macro StyleConformance() = #externalMacro(module: "StylableMacros", type: "StyleConformanceMacro")
