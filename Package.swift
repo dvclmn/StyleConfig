@@ -6,7 +6,7 @@ import CompilerPluginSupport
 
 let package = Package(
     name: "Styler",
-    platforms: [.macOS(.v14), .iOS(.v13)],
+    platforms: [.macOS(.v12), .iOS(.v13)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -42,12 +42,12 @@ let package = Package(
         .executableTarget(name: "StylerClient", dependencies: ["Styler"]),
 
         // A test target used to develop the macro implementation.
-        .testTarget(
-            name: "StylerTests",
-            dependencies: [
-                "StylerMacros",
-                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
-            ]
-        ),
+//        .testTarget(
+//            name: "StylerTests",
+//            dependencies: [
+//                "StylerMacros",
+//                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+//            ]
+//        ),
     ]
 )

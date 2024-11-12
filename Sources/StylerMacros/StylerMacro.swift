@@ -3,14 +3,6 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-
-@main
-struct StylerPlugin: CompilerPlugin {
-  let providingMacros: [Macro.Type] = [
-    StylerMacro.self
-  ]
-}
-
 public struct StylerMacro: ExtensionMacro {
   public static func expansion(
     of node: AttributeSyntax,
