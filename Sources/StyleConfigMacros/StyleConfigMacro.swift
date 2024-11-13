@@ -41,10 +41,11 @@ public struct StyleConfigMacro: MemberMacro {
       return (identifier.identifier.text, type.description)
     }
     
-    let staticDecl: DeclSyntax = "public static let initial = Self()"
+
+//    let staticDecl: DeclSyntax = "public static let initial = Self()"
 
     /// Generate modifier functions for each property
-    var declarations: [DeclSyntax] = [staticDecl]
+    var declarations: [DeclSyntax] = []
     
     for property in properties {
       /// Generate the function declaration
