@@ -1,34 +1,32 @@
 // swift-tools-version: 6.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 import CompilerPluginSupport
 
 let package = Package(
-    name: "Styler",
-    platforms: [.macOS(.v12), .iOS(.v13)],
+    name: "MyMacrum",
+    platforms: [.macOS(.v14), .iOS(.v16)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "Styler",
-            targets: ["Styler"]
+            name: "MyMacrum",
+            targets: ["MyMacrum"]
         ),
         .executable(
-            name: "StylerClient",
-            targets: ["StylerClient"]
+            name: "MyMacrumClient",
+            targets: ["MyMacrumClient"]
         ),
     ],
     dependencies: [
         .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0-latest"),
         .package(url: "https://github.com/dvclmn/Stylable.git", branch: "main"),
-        
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         // Macro implementation that performs the source transformation of a macro.
         .macro(
-            name: "StylerMacros",
+            name: "MyMacrumMacros",
             dependencies: [
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
@@ -36,21 +34,18 @@ let package = Package(
         ),
 
         // Library that exposes a macro as part of its API, which is used in client programs.
-        .target(name: "Styler", dependencies: [
-          "StylerMacros",
-          "Stylable"
-        ]),
+        .target(name: "MyMacrum", dependencies: ["MyMacrumMacros", "Stylable"]),
 
         // A client of the library, which is able to use the macro in its own code.
-        .executableTarget(name: "StylerClient", dependencies: ["Styler"]),
+        .executableTarget(name: "MyMacrumClient", dependencies: ["MyMacrum"]),
 
         // A test target used to develop the macro implementation.
-//        .testTarget(
-//            name: "StylerTests",
-//            dependencies: [
-//                "StylerMacros",
-//                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
-//            ]
-//        ),
+        .testTarget(
+            name: "MyMacrumTests",
+            dependencies: [
+                "MyMacrumMacros",
+                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+            ]
+        ),
     ]
 )
