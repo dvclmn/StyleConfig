@@ -22,7 +22,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0-latest"),
-        .package(url: "https://github.com/dvclmn/Stylable.git", branch: "main"),
+//        .package(url: "https://github.com/dvclmn/Stylable.git", branch: "main"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -37,7 +37,7 @@ let package = Package(
         ),
 
         // Library that exposes a macro as part of its API, which is used in client programs.
-        .target(name: "StyleConfig", dependencies: ["StyleConfigMacros", "Stylable"]),
+        .target(name: "StyleConfig", dependencies: ["StyleConfigMacros"]),
 
         // A client of the library, which is able to use the macro in its own code.
         .executableTarget(name: "StyleConfigClient", dependencies: ["StyleConfig"]),
