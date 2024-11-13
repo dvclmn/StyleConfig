@@ -14,7 +14,6 @@ import SwiftSyntaxMacros
 @main
 struct StyleConfigPlugin: CompilerPlugin {
   let providingMacros: [Macro.Type] = [
-    StringifyMacro.self,
     StyleConfigMacro.self
   ]
 }

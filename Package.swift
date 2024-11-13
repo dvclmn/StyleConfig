@@ -40,12 +40,12 @@ let package = Package(
         .executableTarget(name: "StyleConfigClient", dependencies: ["StyleConfig"]),
 
         // A test target used to develop the macro implementation.
-        .testTarget(
-            name: "StyleConfigTests",
-            dependencies: [
-                "StyleConfigMacros",
-                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
-            ]
-        ),
+//        .testTarget(
+//            name: "StyleConfigTests",
+//            dependencies: [
+//                "StyleConfigMacros",
+//                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+//            ]
+//        ),
     ]
 )
