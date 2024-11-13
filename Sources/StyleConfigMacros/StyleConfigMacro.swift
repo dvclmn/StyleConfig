@@ -1,6 +1,6 @@
 //
 //  StylerMacro.swift
-//  MyMacrum
+//  StyleConfig
 //
 //  Created by Dave Coleman on 13/11/2024.
 //
@@ -9,6 +9,15 @@ import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
+
+// MARK: - Plugin
+@main
+struct StyleConfigPlugin: CompilerPlugin {
+  let providingMacros: [Macro.Type] = [
+    StringifyMacro.self,
+    StyleConfigMacro.self
+  ]
+}
 
 public struct StyleConfigMacro: MemberMacro {
   public static func expansion(

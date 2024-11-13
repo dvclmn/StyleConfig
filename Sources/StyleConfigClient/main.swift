@@ -1,4 +1,4 @@
-import MyMacrum
+import StyleConfig
 
 let a = 17
 let b = 25
