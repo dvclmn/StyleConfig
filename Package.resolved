@@ -1,15 +1,6 @@
 {
-  "originHash" : "fabfc1817e8a49f604434b7d91e2bd91ef6d1affd8edd82e79663629bc52b6aa",
+  "originHash" : "776d6f29b911e5012aef78908659e5041262622d4c3113c3b21f1c4b24780a72",
   "pins" : [
-    {
-      "identity" : "stylable",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/dvclmn/Stylable.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "1d45842913920e31f415599d1c9c815eed6ec180"
-      }
-    },
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",

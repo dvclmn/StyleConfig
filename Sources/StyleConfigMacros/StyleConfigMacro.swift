@@ -38,11 +38,21 @@ public struct StyleConfigMacro: MemberMacro {
             let type = binding.typeAnnotation?.type else {
         return nil
       }
+      
+      // Check if the property has static/class modifier
+      let modifiers = variable.modifiers
+      let isStatic = modifiers.contains { modifier in
+        modifier.name.tokenKind == .keyword(.static) ||
+        modifier.name.tokenKind == .keyword(.class)
+      }
+      
+      // Skip static/class properties
+      guard !isStatic else {
+        return nil
+      }
+      
       return (identifier.identifier.text, type.description)
     }
-    
-
-//    let staticDecl: DeclSyntax = "public static let initial = Self()"
 
     /// Generate modifier functions for each property
     var declarations: [DeclSyntax] = []
