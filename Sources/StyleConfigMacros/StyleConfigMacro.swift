@@ -9,7 +9,8 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-struct MacroProperties {
+/// This is a cool custom type!
+public struct MacroProperties {
   let name: String
   let type: String
   let defaultValue: String?

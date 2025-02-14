@@ -1,55 +1,46 @@
 // swift-tools-version: 6.0
 
-import PackageDescription
 import CompilerPluginSupport
+import PackageDescription
 
 let package = Package(
-    name: "StyleConfig",
-    platforms: [
-      .iOS("17.0"),
-      .macOS("14.0")
-    ],
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "StyleConfig",
-            targets: ["StyleConfig"]
-        ),
-        .executable(
-            name: "StyleConfigClient",
-            targets: ["StyleConfigClient"]
-        ),
-    ],
-    dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0-latest"),
-    ],
-    
-    
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        // Macro implementation that performs the source transformation of a macro.
-        .macro(
-            name: "StyleConfigMacros",
-            dependencies: [
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
-            ]
-        ),
+  name: "StyleConfig",
+  platforms: [
+    .iOS("17.0"),
+    .macOS("14.0"),
+  ],
+  products: [
+    .library(
+      name: "StyleConfig",
+      targets: ["StyleConfig"]
+    ),
+    .executable(
+      name: "StyleConfigClient",
+      targets: ["StyleConfigClient"]
+    ),
+  ],
+  
+  dependencies: [
+    .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0-latest"),
+    .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.1.0"),
+  ],
 
-        // Library that exposes a macro as part of its API, which is used in client programs.
-        .target(name: "StyleConfig", dependencies: ["StyleConfigMacros"]),
-
-        // A client of the library, which is able to use the macro in its own code.
-        .executableTarget(name: "StyleConfigClient", dependencies: ["StyleConfig"]),
-
-        // A test target used to develop the macro implementation.
-//        .testTarget(
-//            name: "StyleConfigTests",
-//            dependencies: [
-//                "StyleConfigMacros",
-//                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
-//            ]
-//        ),
-    ]
+  targets: [
+    .macro(
+      name: "StyleConfigMacros",
+      dependencies: [
+        .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+        .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
+      ]
+    ),
+    .target(name: "StyleConfig", dependencies: ["StyleConfigMacros"]),
+    .executableTarget(name: "StyleConfigClient", dependencies: ["StyleConfig"]),
+    .testTarget(
+      name: "StyleConfigTests",
+      dependencies: [
+        "StyleConfigMacros",
+        .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+      ]
+    ),
+  ]
 )
