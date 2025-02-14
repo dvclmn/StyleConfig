@@ -1,10 +1,18 @@
 import StyleConfig
 import BaseComponents
 
+@MainActor
 @StyleConfig
-public struct SliderConfiguration: Sendable {
-  public var icon: String? = nil
-  public var decimals: Int = 2
+struct ExampleConfiguration: Sendable {
   
-//  @Preset var coolGuy = SliderConfiguration(icon: "", decimals: 4)
+  /// Add properties to be applied to your configurable view, and set reasonable defaults
+  var title: String = ""
+  var icon: String? = nil
+  var showCount: Bool = false
+  
+  /// Establish a 'base' static property. This will be used as a launchpad to string
+  /// together multiple dot-seperated declarations.
+  static let style = ExampleConfiguration()
+  
+  static var examplePreset = .style.
 }

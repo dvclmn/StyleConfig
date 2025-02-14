@@ -8,6 +8,6 @@ public macro StyleConfig() = #externalMacro(
   module: "StyleConfigMacros",
   
   /// `type` corresponds to the name of the Macros struct, e.g.
-  /// `public struct StringifyMacro: ExpressionMacro`
+  /// `public struct StyleConfigMacro: MemberMacro {...}`
   type: "StyleConfigMacro"
 )

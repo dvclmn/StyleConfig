@@ -5,18 +5,9 @@
 //  Created by Dave Coleman on 13/11/2024.
 //
 
-import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
-
-// MARK: - Plugin
-@main
-struct StyleConfigPlugin: CompilerPlugin {
-  let providingMacros: [Macro.Type] = [
-    StyleConfigMacro.self
-  ]
-}
 
 struct MacroProperties {
   let name: String
@@ -60,13 +51,14 @@ public struct StyleConfigMacro: MemberMacro {
       }
       
       /// Skip properties marked with `@Preset`
-      let hasPresetWrapper = modifiers.contains { modifier in
-        modifier.kind == .attribute &&
-        modifier.trimmedDescription.contains("@Preset")
-      }
-      guard !hasPresetWrapper else {
-        return nil
-      }
+      /// Note: This property wrapper is not longer in use
+//      let hasPresetWrapper = modifiers.contains { modifier in
+//        modifier.kind == .attribute &&
+//        modifier.trimmedDescription.contains("@Preset")
+//      }
+//      guard !hasPresetWrapper else {
+//        return nil
+//      }
 
       /// Extract default value if present
       let defaultValue = binding.initializer?.value.description
